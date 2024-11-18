@@ -92,6 +92,7 @@ function App() {
       </section>
     </main>
   )
+ }
 }
 
 export default App

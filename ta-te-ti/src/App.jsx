@@ -42,7 +42,7 @@ function App() {
   const [turn, setTurn] = useState(TURNS.X)
   const [winner, setWinner] = useState(null)
 
-  const checkWinner = () => {
+  const checkWinner = (boardCheck) => {
     for(const combo of WINNER_COMBOS) {
       const [a, b, c] = combo
       if(boardCheck[a] &&
@@ -50,8 +50,9 @@ function App() {
         boardCheck[a] === boardCheck[c]
         ) {
           return boardCheck[a]
-  }
+   }
   return null
+ }
 }
   const updateBoard = (index) => {
     if (board[index] || winner ) return
@@ -90,9 +91,34 @@ function App() {
         <Square isSelected={turn === TURNS.X} >{TURNS.X}</Square>
         <Square isSelected={turn === TURNS.O} >{TURNS.O}</Square>
       </section>
+      <section>
+        {
+          winner !== null && (
+            <section className='winner' >
+              <div className='text' >
+                <h2>
+                  {
+                    winner === false 
+                    ? 'empate'
+                    :'gano'+ winner
+                  }
+                </h2>
+                <header className='win' >
+                  {winner  &&  <Square>{winner}</Square>}
+                </header>
+                <footer>
+                  <button>
+                    empezar nueva partida
+                  </button>
+                </footer>
+              </div>
+            </section>
+          )
+        }
+      </section>
     </main>
   )
  }
-}
+
 
 export default App
